@@ -73,7 +73,6 @@ public class TestCaseData {
         ProfileEntity profileEntity = new ProfileEntity();
 
         profileEntity.setId("A");
-//        meterEntity.setProfileEntity(getPreperedProfile());
         ProfileFractionEntity profileFractionEntity1 = new ProfileFractionEntity(profileEntity, MonthEnum.JAN,0.1);
         ProfileFractionEntity profileFractionEntity2 = new ProfileFractionEntity(profileEntity, MonthEnum.FEB,0.1);
         ProfileFractionEntity profileFractionEntity3 = new ProfileFractionEntity(profileEntity, MonthEnum.MAR,0.1);

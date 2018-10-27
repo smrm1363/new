@@ -5,8 +5,10 @@ import com.mohammadreza.mirali.energyconsumption.domain.common.MonthEnum;
 import com.mohammadreza.mirali.energyconsumption.domain.common.RepositoryCompletion;
 import com.mohammadreza.mirali.energyconsumption.domain.meter.MeterRepository;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,7 @@ import static org.mockito.Mockito.when;
 /**
  * Created by mmirali on 21/10/2018.
  */
+@RunWith(MockitoJUnitRunner.class)
 public class ProfileFractionServiceTest {
 
     @Mock
@@ -29,6 +32,8 @@ public class ProfileFractionServiceTest {
     private RepositoryCompletion repositoryCompletion;
     @Mock
     private MeterRepository meterRepository;
+    @Mock
+    private ProfileFractionService profileFractionService;
 
     @Test
     public void insertProfile() throws Exception {
@@ -44,10 +49,9 @@ public class ProfileFractionServiceTest {
 
     @Test
     public void convertToEntity() throws Exception {
-        ProfileFractionService profileFractionService = mock(ProfileFractionService.class);
+
         List<ProfileEntity> profileEntityList = new ArrayList<>();
         profileEntityList.add(TestCaseData.getPreperedProfile());
-        when(profileFractionService.getEntityListFromDtoList(TestCaseData.getPreperedProfileFractionDto())).thenReturn((profileEntityList));
         profileFractionService.convertToEntity(TestCaseData.getPreperedProfileFractionDto());
 
 
@@ -57,7 +61,6 @@ public class ProfileFractionServiceTest {
     public void getEntityListFromDtoList() throws Exception {
 
 
-        profileRepository = mock(ProfileRepository.class);
         ProfileFractionService profileFractionService = new ProfileFractionService(profileRepository,repositoryCompletion,meterRepository);
         when(profileRepository.findById(TestCaseData.getPreperedProfile().getId())).thenReturn(java.util.Optional.ofNullable(TestCaseData.getPreperedProfile()));
         List<ProfileEntity> profileEntityList = profileFractionService.getEntityListFromDtoList(TestCaseData.getPreperedProfileFractionDto());
@@ -66,17 +69,15 @@ public class ProfileFractionServiceTest {
 
     @Test
     public void deleteProfile() throws Exception {
-        profileRepository = mock(ProfileRepository.class);
-        meterRepository = mock(MeterRepository.class);
+
         ProfileFractionService profileFractionService = new ProfileFractionService(profileRepository,repositoryCompletion,meterRepository);
         doNothing().when(profileRepository).deleteById(TestCaseData.getPreperedProfile().getId());
-        when(meterRepository.findById(any())).thenReturn(null);
         profileFractionService.deleteProfile(TestCaseData.getPreperedProfile().getId());
     }
 
     @Test
     public void findProfileById() throws Exception {
-        profileRepository = mock(ProfileRepository.class);
+
         ProfileFractionService profileFractionService = new ProfileFractionService(profileRepository,repositoryCompletion,meterRepository);
         when(profileRepository.findById(TestCaseData.getPreperedProfile().getId())).thenReturn(java.util.Optional.ofNullable(TestCaseData.getPreperedProfile()));
         ProfileEntity result = profileFractionService.findProfileById(TestCaseData.getPreperedProfile().getId());
@@ -85,11 +86,9 @@ public class ProfileFractionServiceTest {
 
     @Test
     public void saveProfileList() throws Exception {
-        repositoryCompletion = mock(RepositoryCompletion.class);
         ProfileFractionService profileFractionService = new ProfileFractionService(profileRepository,repositoryCompletion,meterRepository);
         List<ProfileEntity> profileEntityList = new ArrayList<>();
         profileEntityList.add(TestCaseData.getPreperedProfile());
-        doNothing().when(repositoryCompletion).saveEntityListWithValidation(profileEntityList,meterRepository,"profile.fraction.validation");
         profileFractionService.saveProfileList(profileEntityList);
     }
 

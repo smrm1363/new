@@ -2,6 +2,8 @@ package com.mohammadreza.mirali.energyconsumption.domain.common;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -13,13 +15,14 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@RunWith(MockitoJUnitRunner.class)
 public class ValidationsFactoryTest {
 
+    @Mock
+    Environment env;
     @Test
     public void getValidationRulesByPropertyName() throws Exception {
 
-        Environment env= mock(Environment.class);
         when(env.getProperty(anyString())).thenReturn("com.mohammadreza.mirali.energyconsumption.domain.meter.validation.FractionShoudBeFound,com.mohammadreza.mirali.energyconsumption.domain.meter.validation.MeterShouldBeLowerThanPrev");
         ValidationsFactory validationsFactory = new ValidationsFactory(env);
         List<ValidationRule> rules= validationsFactory.getValidationRulesByPropertyName("meter.reading.validations");

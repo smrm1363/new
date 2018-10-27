@@ -7,7 +7,9 @@ import com.mohammadreza.mirali.energyconsumption.domain.profile.ProfileFractionS
 import com.mohammadreza.mirali.energyconsumption.domain.profile.ProfileRepository;
 import com.mohammadreza.mirali.energyconsumption.domain.profile.validation.SumFractionValidation;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +20,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
+@RunWith(MockitoJUnitRunner.class)
 public class RepositoryCompletionTest {
     @Mock
     private ValidationsFactory validationsFactory;
@@ -28,7 +30,6 @@ public class RepositoryCompletionTest {
     public void saveEntityListWithValidation() throws Exception {
 
 
-        validationsFactory = mock(ValidationsFactory.class);
         RepositoryCompletion repositoryCompletion = new RepositoryCompletion(validationsFactory);
         List<ProfileEntity> profileEntityList = new ArrayList<>();
         profileEntityList.add(TestCaseData.getPreperedProfile());
