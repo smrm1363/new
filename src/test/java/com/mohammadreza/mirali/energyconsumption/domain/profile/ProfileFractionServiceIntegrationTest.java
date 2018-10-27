@@ -9,6 +9,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.File;
+import java.io.PrintWriter;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,6 +61,23 @@ public class ProfileFractionServiceIntegrationTest {
         ProfileEntity profileEntity = profileFractionService.findProfileById(TestCaseData.getPreperedProfile().getId());
         assertTrue(profileEntity != null);
     }
+
+    @Test
+    public void uploadOldFile() throws Exception
+    {
+        Path path = FileSystems.getDefault().getPath(".").toAbsolutePath().getParent();
+
+        PrintWriter pw = new PrintWriter(new File(path.toString()+"test.csv"));
+        pw.write("Month,Profile,Fraction\n" +
+                "JAN,A,0.2\n" +
+                "JAN,B,0.18\n" +
+                "MAR,A,0.0");
+        pw.close();
+        profileFractionService.uploadOldFile(path.toString()+"test.csv",ProfileFractionDto.class);
+
+    }
+
+
 
 
 
