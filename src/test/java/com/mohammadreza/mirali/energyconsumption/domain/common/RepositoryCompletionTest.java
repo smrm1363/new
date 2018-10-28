@@ -1,9 +1,7 @@
 package com.mohammadreza.mirali.energyconsumption.domain.common;
 
 import com.mohammadreza.mirali.energyconsumption.domain.TestCaseData;
-import com.mohammadreza.mirali.energyconsumption.domain.meter.validation.ConsumptionToleranceValidationTest;
 import com.mohammadreza.mirali.energyconsumption.domain.profile.ProfileEntity;
-import com.mohammadreza.mirali.energyconsumption.domain.profile.ProfileFractionServiceTest;
 import com.mohammadreza.mirali.energyconsumption.domain.profile.ProfileRepository;
 import com.mohammadreza.mirali.energyconsumption.domain.profile.validation.SumFractionValidation;
 import org.junit.Test;
@@ -14,10 +12,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)

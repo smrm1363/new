@@ -1,7 +1,6 @@
 package com.mohammadreza.mirali.energyconsumption.domain.profile;
 
 import com.mohammadreza.mirali.energyconsumption.domain.TestCaseData;
-import com.mohammadreza.mirali.energyconsumption.domain.common.MonthEnum;
 import com.mohammadreza.mirali.energyconsumption.domain.common.RepositoryCompletion;
 import com.mohammadreza.mirali.energyconsumption.domain.meter.MeterRepository;
 import org.junit.Test;
@@ -14,10 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 /**

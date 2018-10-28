@@ -1,31 +1,18 @@
 package com.mohammadreza.mirali.energyconsumption.domain.meter;
 
 import com.mohammadreza.mirali.energyconsumption.domain.TestCaseData;
-import com.mohammadreza.mirali.energyconsumption.domain.common.MonthEnum;
 import com.mohammadreza.mirali.energyconsumption.domain.common.RepositoryCompletion;
-import com.mohammadreza.mirali.energyconsumption.domain.common.ValidationsFactory;
-import com.mohammadreza.mirali.energyconsumption.domain.profile.ProfileEntity;
 import com.mohammadreza.mirali.energyconsumption.domain.profile.ProfileRepository;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.mockito.stubbing.Answer;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -62,7 +49,9 @@ public class MeterReadingServiceTest {
     public void convertToEntity() throws Exception {
         MeterReadingService meterReadingService = new MeterReadingService(meterRepository,meterReadingRepository,profileRepository,repositoryCompletion);
         MeterReadingService spy = spy(meterReadingService);
-
+        when(spy.getEntityListFromDtoList(anyList())).thenReturn(new ArrayList<>());
+        doNothing().when(spy).saveMeterList(anyList());
+         spy.convertToEntity(new ArrayList());
     }
 
 
